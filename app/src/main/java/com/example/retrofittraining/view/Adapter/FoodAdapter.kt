@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofittraining.R
+import com.example.retrofittraining.Utils.DoubleRoudTo
 import com.example.retrofittraining.data.Hint
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.foods_list.view.*
@@ -34,15 +35,15 @@ class FoodAdapter:RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
         val currentitem = foodList[position]
 
         holder.itemView.food_name.text = currentitem.food.label.toString()
-        holder.itemView.food_enerckcal.setText("ENERC_KCAL: " + currentitem.food.nutrients.ENERC_KCAL)
-        holder.itemView.food_chocdf.setText("CHOCDF: " + currentitem.food.nutrients.CHOCDF)
-        holder.itemView.food_fat.setText("FAT: " + currentitem.food.nutrients.FAT)
-        holder.itemView.food_fibtg.setText("FIBTG: " + currentitem.food.nutrients.FIBTG)
-        holder.itemView.food_procnt.setText("PROCNT: " + currentitem.food.nutrients.PROCNT)
+        holder.itemView.food_enerckcal.setText("ENERC_KCAL: " + DoubleRoudTo(currentitem.food.nutrients.ENERC_KCAL))
+        holder.itemView.food_chocdf.setText("CHOCDF: " + DoubleRoudTo(currentitem.food.nutrients.CHOCDF))
+        holder.itemView.food_fat.setText("FAT: " + DoubleRoudTo(currentitem.food.nutrients.FAT))
+        holder.itemView.food_fibtg.setText("FIBTG: " + DoubleRoudTo(currentitem.food.nutrients.FIBTG))
+        holder.itemView.food_procnt.setText("PROCNT: " + DoubleRoudTo(currentitem.food.nutrients.PROCNT))
 
-        Picasso.get()
+       /* Picasso.get()
             .load(currentitem.food.image.toUri())
-            .into(holder.itemView.food_image)
+            .into(holder.itemView.food_image)*/
     }
 
     override fun getItemCount(): Int {
