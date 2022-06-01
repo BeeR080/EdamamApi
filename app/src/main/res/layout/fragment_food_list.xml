@@ -10,13 +10,13 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerFood"
         android:layout_width="match_parent"
-        android:layout_height="600dp"
-        android:layout_marginTop="12dp"
+        android:layout_height="match_parent"
+        android:layout_marginTop="80dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listtop"
-       />
+        app:layout_constraintTop_toBottomOf="@id/listtop"
+         />
 
     <LinearLayout
         android:id="@+id/listtop"
@@ -38,6 +38,7 @@
             app:startIconDrawable="@drawable/ic_find">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/tv_food"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Print food" />
@@ -55,4 +56,39 @@
 
     </LinearLayout>
 
+    <LinearLayout
+        android:visibility="gone"
+        android:id="@+id/errorlist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="276dp"
+            android:layout_height="200dp"
+            android:src="@drawable/ic_notsearch"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:hint="Food not found"
+            android:layout_width="276dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:textSize="30dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageView"
+
+            />
+    </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

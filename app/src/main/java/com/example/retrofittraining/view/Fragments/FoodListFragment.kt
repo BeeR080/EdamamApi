@@ -37,14 +37,19 @@ lateinit var foodViewModel: FoodViewModel
         foodViewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
 
 
-        //adapter.setData(food)
-
         binding.find.setOnClickListener {
-            lifecycleScope.launch {
-                var food = foodViewModel.getFoodReciep("pizza")
-                Log.d("FOOD","$food")
-                adapter.setData(food)
-            }
+                lifecycleScope.launch {
+                    var food = foodViewModel.getFoodReciep("${binding.tvFood.text}")
+                    Log.d("FOOD","$food")
+                    adapter.setData(food)
+                    if (food.size == 0) {
+                        binding.errorlist.visibility = View.VISIBLE
+                    }else
+                        binding.errorlist.visibility = View.GONE
+
+                }
+
+
 
         }
 

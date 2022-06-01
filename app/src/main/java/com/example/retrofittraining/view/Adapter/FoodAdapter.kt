@@ -34,6 +34,11 @@ class FoodAdapter:RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val currentitem = foodList[position]
 
+        var getimage =  Picasso.get()
+            .load(currentitem.food.image?.toUri())
+            .placeholder(R.drawable.ic_launcher_background)
+            .into(holder.itemView.food_image)
+
         holder.itemView.food_name.text = currentitem.food.label.toString()
         holder.itemView.food_enerckcal.setText("ENERC_KCAL: " + DoubleRoudTo(currentitem.food.nutrients.ENERC_KCAL))
         holder.itemView.food_chocdf.setText("CHOCDF: " + DoubleRoudTo(currentitem.food.nutrients.CHOCDF))
@@ -41,11 +46,8 @@ class FoodAdapter:RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
         holder.itemView.food_fibtg.setText("FIBTG: " + DoubleRoudTo(currentitem.food.nutrients.FIBTG))
         holder.itemView.food_procnt.setText("PROCNT: " + DoubleRoudTo(currentitem.food.nutrients.PROCNT))
 
-       /* Picasso.get()
-            .load(currentitem.food.image.toUri())
-            .into(holder.itemView.food_image)*/
-    }
 
+    }
     override fun getItemCount(): Int {
         return foodList.size
     }
