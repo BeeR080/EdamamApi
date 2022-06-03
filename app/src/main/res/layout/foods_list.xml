@@ -4,7 +4,6 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="250dp"
     android:id="@+id/listfood"
@@ -12,32 +11,35 @@
 
     <LinearLayout
         android:layout_marginTop="12dp"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="24dp"
         android:id="@+id/foodlist"
         android:layout_width="150dp"
         android:layout_height="230dp"
         android:orientation="vertical"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <ImageView
             android:id="@+id/food_image"
             android:layout_width="150dp"
-            android:layout_height="150dp" />
+            android:layout_height="150dp"
+            />
 
         <TextView
             android:id="@+id/food_name"
             android:layout_width="match_parent"
             android:layout_height="50dp"
             android:layout_marginTop="18dp"
-            android:text="Pizza Hut"
             android:gravity="center"
-            />
+            android:text="Pizza Hut"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            android:textSize="20sp" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/nutrientslist"
-        android:layout_width="230dp"
+        android:layout_width="210dp"
         android:layout_height="230dp"
         android:layout_marginTop="12dp"
         android:orientation="vertical"
@@ -48,35 +50,40 @@
             android:id="@+id/food_enerckcal"
             android:layout_width="200dp"
             android:layout_height="24dp"
-            android:text="ENERC_KCAL:" />
+            android:text="Energy, kcal :"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"/>
 
         <TextView
             android:id="@+id/food_procnt"
             android:layout_width="200dp"
             android:layout_height="24dp"
             android:layout_marginTop="12dp"
-            android:text="PROCNT:" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Protein:" />
 
         <TextView
             android:id="@+id/food_fat"
             android:layout_width="200dp"
             android:layout_height="24dp"
             android:layout_marginTop="12dp"
-            android:text="FAT:" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Total lipid (fat):" />
 
         <TextView
             android:id="@+id/food_chocdf"
             android:layout_width="200dp"
             android:layout_height="24dp"
             android:layout_marginTop="12dp"
-            android:text="CHOCDF:" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Carbohydrate:" />
 
         <TextView
             android:id="@+id/food_fibtg"
             android:layout_width="200dp"
             android:layout_height="24dp"
             android:layout_marginTop="12dp"
-            android:text="FIBTG:" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+            android:text="Fiber, total dietary:" />
 
 
     </LinearLayout>

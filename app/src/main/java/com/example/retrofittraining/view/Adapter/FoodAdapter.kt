@@ -36,7 +36,7 @@ class FoodAdapter:RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
 
         var getimage =  Picasso.get()
             .load(currentitem.food.image?.toUri())
-            .placeholder(R.drawable.ic_launcher_background)
+            .placeholder(R.mipmap.ic_edamam)
             .into(holder.itemView.food_image)
 
         holder.itemView.food_name.text = currentitem.food.label.toString()

@@ -7,6 +7,28 @@
     android:layout_height="match_parent"
     tools:context=".view.Fragments.FoodListFragment">
 
+    <FrameLayout
+        android:id="@+id/listsearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listtop"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="120dp">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclersearch"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/grey"
+            android:visibility="gone"
+            />
+
+
+    </FrameLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerFood"
         android:layout_width="match_parent"
@@ -15,11 +37,12 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listtop"
+        app:layout_constraintTop_toBottomOf="@id/listsearch"
          />
 
     <LinearLayout
         android:id="@+id/listtop"
+        android:layout_marginStart="12dp"
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="12dp"
@@ -29,16 +52,20 @@
         app:layout_constraintTop_toTopOf="parent" >
 
         <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/textInputLayout"
-            android:layout_marginStart="12dp"
         android:layout_width="276dp"
         android:layout_height="54dp"
+            app:errorEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-            app:startIconDrawable="@drawable/ic_find">
+            app:endIconDrawable="@drawable/ic_find"
+            app:endIconMode="custom"
+            app:startIconDrawable="@drawable/ic_food">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_food"
+            android:inputType="text"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Print food" />
@@ -50,7 +77,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Find"
-            android:layout_marginStart="24dp"
+            android:layout_marginStart="18dp"
             android:gravity="center"
             android:layout_gravity="start"/>
 
@@ -91,4 +118,15 @@
 
             />
     </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/listtop"
+        android:visibility="gone"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

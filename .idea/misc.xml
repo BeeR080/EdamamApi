@@ -3,17 +3,16 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Anroid Studio Projects/EdamamApi/app/src/main/res/drawable/ic_notsearch.xml" value="0.196" />
-        <entry key="..\:/Anroid Studio Projects/EdamamApi/app/src/main/res/layout/foods_list.xml" value="0.23703703703703705" />
-        <entry key="..\:/Anroid Studio Projects/EdamamApi/app/src/main/res/layout/fragment_food_list.xml" value="0.22" />
+        <entry key="..\:/Projects/RetrofitTraining/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.2525" />
         <entry key="..\:/Projects/RetrofitTraining/app/src/main/res/drawable/ic_find.xml" value="0.151" />
+        <entry key="..\:/Projects/RetrofitTraining/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2525" />
         <entry key="..\:/Projects/RetrofitTraining/app/src/main/res/layout/activity_main.xml" value="0.14114583333333333" />
-        <entry key="..\:/Projects/RetrofitTraining/app/src/main/res/layout/foods_list.xml" value="0.14114583333333333" />
+        <entry key="..\:/Projects/RetrofitTraining/app/src/main/res/layout/foods_list.xml" value="0.25" />
         <entry key="..\:/Projects/RetrofitTraining/app/src/main/res/layout/fragment_food_list.xml" value="0.25" />
       </map>
     </option>
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_8" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
