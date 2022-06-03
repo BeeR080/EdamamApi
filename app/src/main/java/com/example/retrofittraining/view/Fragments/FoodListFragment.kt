@@ -51,20 +51,26 @@ lateinit var foodViewModel: FoodViewModel
 
                 binding.progressBar.visibility = View.VISIBLE
                 var tvfoodedittext = binding.tvFood.text.toString()
-
                 if (inputChek(tvfoodedittext)) {
                     var food = foodViewModel.getFoodReciep("$tvfoodedittext")
-                    Log.d("FOOD","$food")
+                    Log.d("FOOD", "$food")
                     adapter.setData(food)
+                    binding.recyclerFood.visibility = View.VISIBLE
                     binding.progressBar.visibility = View.GONE
 
-                    if (food.size == 0) {
-                        binding.errorlist.visibility = View.VISIBLE
+                    if (food.size > 0) {
+                        binding.recyclerFood.visibility = View.VISIBLE
+                        binding.errorlist.visibility = View.GONE
                         binding.progressBar.visibility = View.GONE
                     }else
-                        binding.errorlist.visibility = View.GONE
+                        binding.errorlist.visibility = View.VISIBLE
                     Log.d("FOOD","$food")
                     adapter.setData(food)
+                }else{
+                    binding.errorlist.visibility = View.VISIBLE
+                    binding.progressBar.visibility = View.GONE
+                    binding.recyclerFood.visibility = View.GONE
+
                 }
 
             }
