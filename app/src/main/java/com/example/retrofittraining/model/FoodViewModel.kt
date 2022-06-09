@@ -3,6 +3,7 @@ package com.example.retrofittraining.model
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.retrofittraining.data.Food
 import com.example.retrofittraining.data.Hint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -23,5 +24,8 @@ init {
      }
       return repository.getFoodReciep(foodName)
  }
+
+
+
 
 }

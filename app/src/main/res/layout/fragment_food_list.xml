@@ -9,21 +9,22 @@
 
     <FrameLayout
         android:id="@+id/listsearch"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/listtop"
         android:layout_marginStart="12dp"
-        android:layout_marginEnd="120dp">
+        android:layout_marginEnd="12dp">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclersearch"
-            android:layout_width="match_parent"
+            android:id="@+id/recyclerwatchlist"
+            android:layout_width="390dp"
             android:layout_height="wrap_content"
             android:background="@color/grey"
             android:visibility="gone"
+
             />
 
 
@@ -42,7 +43,8 @@
 
     <LinearLayout
         android:id="@+id/listtop"
-        android:layout_marginStart="12dp"
+        android:layout_marginStart="8dp"
+
         android:layout_width="match_parent"
         android:layout_height="80dp"
         android:layout_marginTop="12dp"
@@ -54,32 +56,25 @@
         <com.google.android.material.textfield.TextInputLayout
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:id="@+id/textInputLayout"
-        android:layout_width="276dp"
+        android:layout_width="match_parent"
         android:layout_height="54dp"
             app:errorEnabled="true"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
             app:endIconDrawable="@drawable/ic_find"
             app:endIconMode="custom"
-            app:startIconDrawable="@drawable/ic_food">
+            app:startIconDrawable="@drawable/ic_food"
+            android:layout_marginEnd="12dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/tv_food"
-            android:inputType="text"
+            android:inputType="textAutoComplete"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Print food" />
+            android:hint="Print food"
+            android:imeOptions="actionSearch"/>
         </com.google.android.material.textfield.TextInputLayout>
 
-
-        <Button
-            android:id="@+id/find"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Find"
-            android:layout_marginStart="18dp"
-            android:gravity="center"
-            android:layout_gravity="start"/>
 
     </LinearLayout>
 

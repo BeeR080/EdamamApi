@@ -1,5 +1,6 @@
 package com.example.retrofittraining.model
 
+import com.example.retrofittraining.data.Food
 import com.example.retrofittraining.data.Hint
 
 class FoodRepository() {
@@ -10,5 +11,6 @@ class FoodRepository() {
         var foodList = food.body()!!.hints
         return foodList
     }
+
 
 }

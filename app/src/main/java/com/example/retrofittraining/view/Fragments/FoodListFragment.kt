@@ -2,24 +2,24 @@ package com.example.retrofittraining.view.Fragments
 
 import android.os.Bundle
 import android.text.Editable
-import android.text.TextUtils
 import android.text.TextWatcher
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isEmpty
-import androidx.core.view.isNotEmpty
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.retrofittraining.R
 import com.example.retrofittraining.Utils.inputChek
+import com.example.retrofittraining.data.Hint
 import com.example.retrofittraining.databinding.FragmentFoodListBinding
 import com.example.retrofittraining.model.FoodViewModel
 import com.example.retrofittraining.view.Adapter.FoodAdapter
-import kotlinx.android.synthetic.main.fragment_food_list.view.*
+import com.example.retrofittraining.view.Adapter.FoodTextInputEditTextAdapter
+import com.google.android.material.textfield.TextInputEditText
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
 
@@ -27,53 +27,39 @@ class FoodListFragment : Fragment() {
 lateinit var foodViewModel: FoodViewModel
     var binding: FragmentFoodListBinding? = null
 
+    val adapterTextInput = FoodTextInputEditTextAdapter()
+    val adapter = FoodAdapter()
+
+
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val binding = FragmentFoodListBinding.inflate(inflater, container, false)
         this.binding = binding
 
-        //Adapter
-    val adapter = FoodAdapter()
+        //Adapter for food
     val recyclerView = binding.recyclerFood
     recyclerView.adapter = adapter
     recyclerView.layoutManager = LinearLayoutManager(requireContext())
+
+        //Adapter for foodTextinputist
+        val recyclerViewTextInput = binding.recyclerwatchlist
+        recyclerViewTextInput.adapter = adapterTextInput
+        recyclerViewTextInput.layoutManager = LinearLayoutManager(requireContext())
+
 
 
         //ViewModel
         foodViewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
 
 
-        binding.find.setOnClickListener {
-            lifecycleScope.launch {
 
-                binding.progressBar.visibility = View.VISIBLE
-                var tvfoodedittext = binding.tvFood.text.toString()
-                if (inputChek(tvfoodedittext)) {
-                    var food = foodViewModel.getFoodReciep("$tvfoodedittext")
-                    Log.d("FOOD", "$food")
-                    adapter.setData(food)
-                    binding.recyclerFood.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.GONE
 
-                    if (food.size > 0) {
-                        binding.recyclerFood.visibility = View.VISIBLE
-                        binding.errorlist.visibility = View.GONE
-                        binding.progressBar.visibility = View.GONE
-                    }else
-                        binding.errorlist.visibility = View.VISIBLE
-                    Log.d("FOOD","$food")
-                    adapter.setData(food)
-                }else{
-                    binding.errorlist.visibility = View.VISIBLE
-                    binding.progressBar.visibility = View.GONE
-                    binding.recyclerFood.visibility = View.GONE
 
-                }
-
-            }
+        binding.tvFood.addTextChangedListener(SimpleTextWatcher)
 
 
 
@@ -82,6 +68,38 @@ lateinit var foodViewModel: FoodViewModel
 
 
 
+
+
+
+binding.textInputLayout.setEndIconOnClickListener {
+    lifecycleScope.launch {
+
+        binding.progressBar.visibility = View.VISIBLE
+        var tvfoodedittext = binding.tvFood.text.toString()
+        if (inputChek(tvfoodedittext)) {
+            var food = foodViewModel.getFoodReciep("$tvfoodedittext")
+            Log.d("FOOD", "$food")
+            adapter.setData(food)
+            binding.recyclerFood.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.GONE
+
+            if (food.size > 0) {
+                binding.recyclerFood.visibility = View.VISIBLE
+                binding.errorlist.visibility = View.GONE
+                binding.progressBar.visibility = View.GONE
+            }else
+                binding.errorlist.visibility = View.VISIBLE
+            Log.d("FOOD","$food")
+            adapter.setData(food)
+        }else{
+            binding.errorlist.visibility = View.VISIBLE
+            binding.progressBar.visibility = View.GONE
+            binding.recyclerFood.visibility = View.GONE
+
+        }
+
+
+    }
 
         }
 
@@ -93,19 +111,28 @@ lateinit var foodViewModel: FoodViewModel
         binding = null
     }
 
+    private val SimpleTextWatcher= object :  TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+        }
+
+        override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+        }
+
+        override fun afterTextChanged(s: Editable?) {
+
+         adapterTextInput.setData(s.toString())
+            binding!!.recyclerwatchlist.visibility = View.VISIBLE
+
+
+        }
+    }
 
 
 
 }
 
-private abstract class SimpleTextWatcher: TextWatcher {
-    override fun afterTextChanged(s: Editable?) {
 
-    }
 
-    override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-    }
 
-    override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-    }
-}
