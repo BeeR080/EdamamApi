@@ -8,18 +8,16 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.size
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofittraining.Utils.inputChek
-import com.example.retrofittraining.data.Hint
 import com.example.retrofittraining.databinding.FragmentFoodListBinding
 import com.example.retrofittraining.model.FoodViewModel
 import com.example.retrofittraining.view.Adapter.FoodAdapter
 import com.example.retrofittraining.view.Adapter.FoodTextInputEditTextAdapter
-import com.google.android.material.textfield.TextInputEditText
-import kotlinx.coroutines.delay
-import kotlinx.coroutines.flow.*
+import kotlinx.android.synthetic.main.fragment_food_list.*
 import kotlinx.coroutines.launch
 
 
@@ -50,7 +48,7 @@ lateinit var foodViewModel: FoodViewModel
         recyclerViewTextInput.adapter = adapterTextInput
         recyclerViewTextInput.layoutManager = LinearLayoutManager(requireContext())
 
-
+        binding.tvFood.addTextChangedListener(SimpleTextWatcher)
 
         //ViewModel
         foodViewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
@@ -59,13 +57,10 @@ lateinit var foodViewModel: FoodViewModel
 
 
 
-        binding.tvFood.addTextChangedListener(SimpleTextWatcher)
+lifecycleScope.launch {
 
 
-
-
-
-
+}
 
 
 
@@ -85,6 +80,7 @@ binding.textInputLayout.setEndIconOnClickListener {
 
             if (food.size > 0) {
                 binding.recyclerFood.visibility = View.VISIBLE
+                binding.listsearch.visibility = View.GONE
                 binding.errorlist.visibility = View.GONE
                 binding.progressBar.visibility = View.GONE
             }else
@@ -111,26 +107,31 @@ binding.textInputLayout.setEndIconOnClickListener {
         binding = null
     }
 
-    private val SimpleTextWatcher= object :  TextWatcher {
+    private val SimpleTextWatcher = object :  TextWatcher {
+
         override fun beforeTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
         }
-
         override fun onTextChanged(s: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
         }
 
         override fun afterTextChanged(s: Editable?) {
+           var text = s.toString()
+            adapterTextInput.setData(text)
+            if (s!!.length > 0) {
+                binding!!.listsearch.visibility = View.VISIBLE
+            }
+            else{
+                binding!!.listsearch.visibility = View.GONE
 
-         adapterTextInput.setData(s.toString())
-            binding!!.recyclerwatchlist.visibility = View.VISIBLE
 
 
         }
+            Log.d("textwatcher","$text")
+        }
+
+
     }
-
-
-
 }
 
 
