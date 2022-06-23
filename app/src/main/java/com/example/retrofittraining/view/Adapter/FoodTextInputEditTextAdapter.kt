@@ -14,7 +14,7 @@ class FoodTextInputEditTextAdapter:RecyclerView.Adapter
 
 
 
-    var foodList = ArrayList<String>()
+    var foodList = emptyList<Hint>()
     var foodTestString = ""
 
 
@@ -37,7 +37,7 @@ class FoodTextInputEditTextAdapter:RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: FoodTextInputViewHolder, position: Int) {
         val currentitem = foodList[position]
-        holder.itemView.tv_foodtexinput.setText(foodTestString)
+        holder.itemView.tv_foodtexinput.text = currentitem.food.label.toString()
 
 
 
@@ -47,11 +47,12 @@ class FoodTextInputEditTextAdapter:RecyclerView.Adapter
     }
 
 
-    fun setData(foods: String){
-        var foodStringList = ArrayList<String>()
+    fun setData(foods: List<Hint>){
+        this.foodList = foods
+        /*var foodStringList = ArrayList<String>()
          foodStringList.add(foods)
         foodTestString = foodStringList.toString()
-        foodList.add(foodTestString)
+        foodList.add(foodTestString)*/
         notifyDataSetChanged()
 
     }

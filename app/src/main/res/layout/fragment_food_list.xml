@@ -8,30 +8,6 @@
     tools:context=".view.Fragments.FoodListFragment">
 
 
-
-
-    <FrameLayout
-        android:id="@+id/listsearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listtop"
-        android:layout_marginStart="12dp"
-        android:layout_marginEnd="12dp"
-        android:visibility="gone">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerwatchlist"
-            android:layout_width="390dp"
-            android:layout_height="70dp"
-            android:background="@color/grey"
-            />
-
-
-    </FrameLayout>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerFood"
         android:layout_width="match_parent"
@@ -40,8 +16,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/listsearch"
-         />
+        app:layout_constraintTop_toBottomOf="@id/listsearch" />
+
+    <FrameLayout
+        android:id="@+id/listsearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:orientation="horizontal"
+        android:visibility="visible"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/listtop">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerwatchlist"
+            android:layout_width="390dp"
+            android:layout_height="70dp"
+            android:background="@color/grey" />
+
+
+    </FrameLayout>
 
     <LinearLayout
         android:id="@+id/listtop"

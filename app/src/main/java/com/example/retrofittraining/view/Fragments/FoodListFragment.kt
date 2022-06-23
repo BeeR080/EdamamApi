@@ -18,6 +18,7 @@ import com.example.retrofittraining.model.FoodViewModel
 import com.example.retrofittraining.view.Adapter.FoodAdapter
 import com.example.retrofittraining.view.Adapter.FoodTextInputEditTextAdapter
 import kotlinx.android.synthetic.main.fragment_food_list.*
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
 
@@ -57,10 +58,7 @@ lateinit var foodViewModel: FoodViewModel
 
 
 
-lifecycleScope.launch {
 
-
-}
 
 
 
@@ -116,23 +114,32 @@ binding.textInputLayout.setEndIconOnClickListener {
         }
 
         override fun afterTextChanged(s: Editable?) {
-           var text = s.toString()
-            adapterTextInput.setData(text)
-            if (s!!.length > 0) {
-                binding!!.listsearch.visibility = View.VISIBLE
-            }
-            else{
-                binding!!.listsearch.visibility = View.GONE
+            lifecycleScope.launch {
+                try {
+                    var text = s.toString()
+                    var food = foodViewModel.getFoodReciep("$text")
+                    delay(2000)
+                    adapterTextInput.setData(food)
 
+                    if (s!!.length > 0) {
+                        binding!!.listsearch.visibility = View.VISIBLE
+                    }
+                    else{
+                        binding!!.listsearch.visibility = View.GONE
 
+                    }
+                    Log.d("textwatcher","$text")
+                }
+                catch (e:Exception){
+                }
 
-        }
-            Log.d("textwatcher","$text")
         }
 
 
     }
+    }
 }
+
 
 
 
