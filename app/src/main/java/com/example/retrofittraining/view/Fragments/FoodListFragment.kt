@@ -13,12 +13,16 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofittraining.Utils.inputChek
+import com.example.retrofittraining.data.Hint
 import com.example.retrofittraining.databinding.FragmentFoodListBinding
 import com.example.retrofittraining.model.FoodViewModel
 import com.example.retrofittraining.view.Adapter.FoodAdapter
 import com.example.retrofittraining.view.Adapter.FoodTextInputEditTextAdapter
 import kotlinx.android.synthetic.main.fragment_food_list.*
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 
@@ -53,16 +57,6 @@ lateinit var foodViewModel: FoodViewModel
 
         //ViewModel
         foodViewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
-
-
-
-
-
-
-
-
-
-
 
 binding.textInputLayout.setEndIconOnClickListener {
     lifecycleScope.launch {
@@ -115,11 +109,11 @@ binding.textInputLayout.setEndIconOnClickListener {
 
         override fun afterTextChanged(s: Editable?) {
             lifecycleScope.launch {
+              flow {
                 try {
                     var text = s.toString()
+                    delay(200)
                     var food = foodViewModel.getFoodReciep("$text")
-                    delay(2000)
-                    adapterTextInput.setData(food)
 
                     if (s!!.length > 0) {
                         binding!!.listsearch.visibility = View.VISIBLE
@@ -128,12 +122,18 @@ binding.textInputLayout.setEndIconOnClickListener {
                         binding!!.listsearch.visibility = View.GONE
 
                     }
+
+                    emit(adapterTextInput.setData(food))
                     Log.d("textwatcher","$text")
                 }
+
                 catch (e:Exception){
                 }
 
-        }
+
+        }.collect()
+            }
+
 
 
     }

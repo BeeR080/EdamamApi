@@ -15,7 +15,7 @@ class FoodTextInputEditTextAdapter:RecyclerView.Adapter
 
 
     var foodList = emptyList<Hint>()
-    var foodTestString = ""
+
 
 
 
@@ -49,10 +49,6 @@ class FoodTextInputEditTextAdapter:RecyclerView.Adapter
 
     fun setData(foods: List<Hint>){
         this.foodList = foods
-        /*var foodStringList = ArrayList<String>()
-         foodStringList.add(foods)
-        foodTestString = foodStringList.toString()
-        foodList.add(foodTestString)*/
         notifyDataSetChanged()
 
     }

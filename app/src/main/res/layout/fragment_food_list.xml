@@ -20,22 +20,24 @@
 
     <FrameLayout
         android:id="@+id/listsearch"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="390dp"
+        android:layout_height="200dp"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="12dp"
         android:orientation="horizontal"
-        android:visibility="visible"
-
+        android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/listtop">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerwatchlist"
-            android:layout_width="390dp"
-            android:layout_height="70dp"
-            android:background="@color/grey" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="@drawable/bgrecyclerround"
+
+            />
 
 
     </FrameLayout>
@@ -70,7 +72,9 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Print food"
-            android:imeOptions="actionSearch"/>
+            android:imeOptions="actionSearch"
+
+            />
         </com.google.android.material.textfield.TextInputLayout>
 
 
