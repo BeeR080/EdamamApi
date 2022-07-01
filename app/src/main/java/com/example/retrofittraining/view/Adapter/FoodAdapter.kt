@@ -40,11 +40,9 @@ class FoodAdapter:RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
             .into(holder.itemView.food_image)
 
         holder.itemView.food_name.text = currentitem.food.label.toString()
-        holder.itemView.food_enerckcal.setText("ENERC_KCAL: " + DoubleRoudTo(currentitem.food.nutrients.ENERC_KCAL))
-        holder.itemView.food_chocdf.setText("CHOCDF: " + DoubleRoudTo(currentitem.food.nutrients.CHOCDF))
-        holder.itemView.food_fat.setText("FAT: " + DoubleRoudTo(currentitem.food.nutrients.FAT))
-        holder.itemView.food_fibtg.setText("FIBTG: " + DoubleRoudTo(currentitem.food.nutrients.FIBTG))
-        holder.itemView.food_procnt.setText("PROCNT: " + DoubleRoudTo(currentitem.food.nutrients.PROCNT))
+        holder.itemView.food_enerckcal.setText(DoubleRoudTo(currentitem.food.nutrients.ENERC_KCAL)+"kcal")
+        holder.itemView.food_fat.setText(DoubleRoudTo(currentitem.food.nutrients.FAT)+"g")
+        holder.itemView.food_procnt.setText(DoubleRoudTo(currentitem.food.nutrients.PROCNT)+"g")
 
 
     }
