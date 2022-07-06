@@ -5,22 +5,19 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofittraining.R
-import com.example.retrofittraining.data.Food
 import com.example.retrofittraining.data.Hint
 import kotlinx.android.synthetic.main.foodtextinput_list.view.*
 
-class FoodTextInputEditTextAdapter:RecyclerView.Adapter
+ class FoodTextInputEditTextAdapter(private val foodClickListener:FoodClickListener):RecyclerView.Adapter
 <FoodTextInputEditTextAdapter.FoodTextInputViewHolder>() {
+
 
 
 
     var foodList = emptyList<Hint>()
 
-
-
-
-
     class FoodTextInputViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+
 
     }
 
@@ -37,7 +34,10 @@ class FoodTextInputEditTextAdapter:RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: FoodTextInputViewHolder, position: Int) {
         val currentitem = foodList[position]
-        holder.itemView.tv_foodtexinput.text = currentitem.food.label.toString()
+         holder.itemView.tv_foodtexinput.text = currentitem.food.label.toString()
+holder.itemView.setOnClickListener{
+    foodClickListener.onFoodClickListener(currentitem.food.label.toString())
+}
 
 
 
@@ -52,6 +52,12 @@ class FoodTextInputEditTextAdapter:RecyclerView.Adapter
         notifyDataSetChanged()
 
     }
+
+
+
+}
+interface FoodClickListener {
+    fun onFoodClickListener(food:String)
 
 
 }
