@@ -44,6 +44,7 @@ class FoodAdapter:RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
         holder.itemView.food_enerckcal.setText(DoubleRoudTo(currentitem.food.nutrients.ENERC_KCAL)+"kcal")
         holder.itemView.food_fat.setText(DoubleRoudTo(currentitem.food.nutrients.FAT)+"g")
         holder.itemView.food_procnt.setText(DoubleRoudTo(currentitem.food.nutrients.PROCNT)+"g")
+        holder.itemView.food_recipe.setText("Recipe: "+ currentitem.food.foodContentsLabel)
 
 
     }

@@ -4,17 +4,18 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="370dp"
+    android:layout_height="515dp"
     android:id="@+id/listfood"
     >
 
     <LinearLayout
         android:id="@+id/foodlist"
         android:layout_width="match_parent"
-        android:layout_height="360dp"
+        android:layout_height="510dp"
         android:elevation="30dp"
-
+        android:background="#FBDE9A"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,6 +112,7 @@
 
             </LinearLayout>
 
+
             <LinearLayout
                 android:id="@+id/nutrientslist_protein"
                 android:layout_width="100dp"
@@ -202,10 +204,31 @@
 
             </LinearLayout>
         </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/devider3"
+            android:layout_width="340dp"
+            android:layout_height="3dp"
+            android:background="@color/dark_green"
+            android:orientation="horizontal"
+            android:layout_marginStart="36dp"
+            android:gravity="center">
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/food_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:textSize="24dp"
+            android:text="Recipe: No recipe for this food :("
+            android:textColor="@color/dark_green"
+            />
+
+
+
     </LinearLayout>
-
-
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
