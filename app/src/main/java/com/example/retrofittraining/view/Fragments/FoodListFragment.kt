@@ -118,7 +118,7 @@ binding.textInputLayout.setEndIconOnClickListener {
                         delay(300)
                         binding!!.progressBar.visibility = View.VISIBLE
                     var food = foodViewModel.getFoodReciep("$text")
-                    emit(adapterTextInput.setData(food))
+                    emit(adapterTextInput.setData(food.takeLast(food.size - 1)))
                     binding!!.progressBar.visibility = View.GONE
                     Log.d("textwatcher", "$text")
                     if(s!!.length < 1)

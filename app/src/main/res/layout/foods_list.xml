@@ -6,14 +6,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="515dp"
+    android:layout_height="540dp"
     android:id="@+id/listfood"
     >
 
     <LinearLayout
         android:id="@+id/foodlist"
         android:layout_width="match_parent"
-        android:layout_height="510dp"
+        android:layout_height="525dp"
         android:elevation="30dp"
         android:background="#FBDE9A"
         android:orientation="vertical"
@@ -30,6 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:elevation="30dp"
             >
 
             <ImageView
@@ -222,7 +223,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textSize="24dp"
-            android:text="Recipe: No recipe for this food :("
+            tools:text="Recipe: No recipe for this food :("
             android:textColor="@color/dark_green"
             />
 

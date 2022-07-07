@@ -5,5 +5,5 @@ data class Food(
     val image: String?,
     val label: String,
     val nutrients: Nutrients,
-    val foodContentsLabel: String = "No recipe for this food :("
+    val foodContentsLabel: String
 )
