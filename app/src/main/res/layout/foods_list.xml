@@ -39,7 +39,7 @@
 <LinearLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_200">
+    android:background="@color/dark_green">
             <TextView
                 android:id="@+id/food_name"
                 android:layout_width="match_parent"
@@ -57,7 +57,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="#FFF6E1">
+            android:background="#FBDE9A">
 
             <LinearLayout
                 android:id="@+id/nutrientslist_energy"
@@ -76,7 +76,7 @@
                     android:gravity="center"
                     android:text="Energy"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/teal_700"
+                    android:textColor="@color/dark_green"
                     android:textStyle="italic" />
 
                 <TextView
@@ -87,7 +87,7 @@
                     android:gravity="center"
                     android:text="235 kcal"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/teal_200"
+                    android:textColor="@color/dark_green"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -104,7 +104,7 @@
                 android:layout_height="100dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="64dp"
-                android:background="@color/grey"
+                android:background="@color/dark_green"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foodlist">
@@ -128,7 +128,7 @@
                     android:gravity="center"
                     android:text="Protein"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/teal_700"
+                    android:textColor="@color/dark_green"
                     android:textStyle="italic" />
 
                 <TextView
@@ -139,7 +139,7 @@
                     android:gravity="center"
                     android:text="32 g"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/teal_200"
+                    android:textColor="@color/dark_green"
                     android:textStyle="bold" />
 
                 <ImageView
@@ -156,7 +156,7 @@
                 android:layout_height="100dp"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="64dp"
-                android:background="@color/grey"
+                android:background="@color/dark_green"
                 android:orientation="vertical"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/foodlist">
@@ -180,7 +180,7 @@
                     android:gravity="center"
                     android:text="Fat"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/teal_700"
+                    android:textColor="@color/dark_green"
                     android:textStyle="italic" />
 
                 <TextView
@@ -191,7 +191,7 @@
                     android:gravity="center"
                     android:text="98 g"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="@color/teal_200"
+                    android:textColor="@color/dark_green"
                     android:textStyle="bold" />
 
                 <ImageView

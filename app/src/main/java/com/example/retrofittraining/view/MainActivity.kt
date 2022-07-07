@@ -22,11 +22,19 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setupActionBarWithNavController(findNavController(R.id.fragment))
+
     }
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.fragment)
         return navController.navigateUp() || super.onSupportNavigateUp()
+
+    }
+
+    override fun onBackPressed() {
+        moveTaskToBack(true)
+        System.exit(0)
+
     }
 }
 

@@ -7,6 +7,7 @@ import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofittraining.R
 import com.example.retrofittraining.Utils.DoubleRoudTo
+import com.example.retrofittraining.data.Food
 import com.example.retrofittraining.data.Hint
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.foods_list.view.*
@@ -54,5 +55,6 @@ class FoodAdapter:RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
         this.foodList = foods
         notifyDataSetChanged()
     }
+
 
 }
