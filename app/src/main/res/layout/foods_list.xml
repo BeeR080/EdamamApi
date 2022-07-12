@@ -6,16 +6,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="540dp"
+    android:layout_height="590dp"
     android:id="@+id/listfood"
     >
 
     <LinearLayout
         android:id="@+id/foodlist"
         android:layout_width="match_parent"
-        android:layout_height="525dp"
-        android:elevation="30dp"
-        android:background="#FBDE9A"
+        android:layout_height="570dp"
+        android:elevation="20dp"
+        android:background="@color/white"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,31 +35,35 @@
 
             <ImageView
                 android:id="@+id/food_image"
-                android:layout_width="150dp"
+                android:layout_width="match_parent"
                 android:layout_height="150dp"
-                />
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/dark_green">
+                android:scaleType="centerCrop" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="95dp"
+            android:background="@color/green">
+
             <TextView
+                android:isScrollContainer="true"
                 android:id="@+id/food_name"
                 android:layout_width="match_parent"
-                android:layout_height="80dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="48dp"
+                android:layout_height="68dp"
+                android:layout_marginStart="28dp"
+                android:layout_marginTop="24dp"
                 android:gravity="start"
                 android:text="Pizza Hut"
-                android:textColor="@color/white"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textColor="@color/white"
                 android:textSize="24sp" />
-</LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:background="#FBDE9A">
+            android:background="@color/white">
 
             <LinearLayout
                 android:id="@+id/nutrientslist_energy"
@@ -223,6 +227,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:textSize="24dp"
+            android:isScrollContainer="true"
             tools:text="Recipe: No recipe for this food :("
             android:textColor="@color/dark_green"
             />
