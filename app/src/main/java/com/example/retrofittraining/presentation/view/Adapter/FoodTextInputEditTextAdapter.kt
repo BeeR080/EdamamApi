@@ -1,4 +1,4 @@
-package com.example.retrofittraining.view.Adapter
+package com.example.retrofittraining.presentation.view.Adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -6,37 +6,39 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofittraining.R
 import com.example.retrofittraining.data.Hint
-import kotlinx.android.synthetic.main.foodtextinput_list.view.*
+import com.example.retrofittraining.databinding.FoodtextinputListBinding
 
- class FoodTextInputEditTextAdapter(private val foodClickListener:FoodClickListener):RecyclerView.Adapter
+
+class FoodTextInputEditTextAdapter(private val foodClickListener: FoodClickListener):RecyclerView.Adapter
 <FoodTextInputEditTextAdapter.FoodTextInputViewHolder>() {
-
-
-
 
     var foodList = emptyList<Hint>()
 
-    class FoodTextInputViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView){
+    class FoodTextInputViewHolder(binding: FoodtextinputListBinding) :
+        RecyclerView.ViewHolder(binding.root){
 
+val textInput = binding.tvFoodtexinput
 
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
             FoodTextInputViewHolder {
-        val view = LayoutInflater
-            .from(parent.context)
+        val view = FoodtextinputListBinding
             .inflate(
-                R.layout.foodtextinput_list,
-                parent,
-                false)
+            LayoutInflater
+                .from(parent.context) ,
+                    parent,
+            false
+        )
+
         return FoodTextInputViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: FoodTextInputViewHolder, position: Int) {
         val currentitem = foodList[position]
-         holder.itemView.tv_foodtexinput.text = currentitem.food.label.toString()
+         holder.textInput.text = currentitem.food.label
 holder.itemView.setOnClickListener{
-    foodClickListener.onFoodClickListener(currentitem.food.label.toString())
+    foodClickListener.onFoodClickListener(currentitem.food.label)
 }
 
 

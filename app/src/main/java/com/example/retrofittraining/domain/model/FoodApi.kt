@@ -1,9 +1,9 @@
-package com.example.retrofittraining.model
+package com.example.retrofittraining.domain.model
 
 import com.example.retrofittraining.data.FoodList
-import com.example.retrofittraining.view.APP_ID
-import com.example.retrofittraining.view.APP_KEY
-import com.example.retrofittraining.view.BASE_URI
+import com.example.retrofittraining.presentation.APP_ID
+import com.example.retrofittraining.presentation.APP_KEY
+import com.example.retrofittraining.presentation.BASE_URI
 import okhttp3.OkHttpClient
 import retrofit2.Response
 import retrofit2.Retrofit

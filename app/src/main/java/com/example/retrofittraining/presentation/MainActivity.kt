@@ -1,4 +1,4 @@
-package com.example.retrofittraining.view
+package com.example.retrofittraining.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,6 +6,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.example.retrofittraining.R
 import com.example.retrofittraining.databinding.ActivityMainBinding
+import kotlin.system.exitProcess
 
 
 const val APP_ID = "5ae50da9"
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onBackPressed() {
         moveTaskToBack(true)
-        System.exit(0)
+        exitProcess(0)
 
     }
 }

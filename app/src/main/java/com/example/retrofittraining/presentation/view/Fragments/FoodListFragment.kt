@@ -1,4 +1,4 @@
-package com.example.retrofittraining.view.Fragments
+package com.example.retrofittraining.presentation.view.Fragments
 
 import android.os.Bundle
 import android.text.Editable
@@ -8,24 +8,25 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofittraining.Utils.inputChek
+import com.example.retrofittraining.data.Hint
 import com.example.retrofittraining.databinding.FragmentFoodListBinding
-import com.example.retrofittraining.model.FoodViewModel
-import com.example.retrofittraining.view.Adapter.FoodAdapter
-import com.example.retrofittraining.view.Adapter.FoodClickListener
-import com.example.retrofittraining.view.Adapter.FoodTextInputEditTextAdapter
-import kotlinx.android.synthetic.main.fragment_food_list.*
+import com.example.retrofittraining.viewmodel.FoodViewModel
+import com.example.retrofittraining.presentation.view.Adapter.FoodAdapter
+import com.example.retrofittraining.presentation.view.Adapter.FoodClickListener
+import com.example.retrofittraining.presentation.view.Adapter.FoodTextInputEditTextAdapter
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class FoodListFragment : Fragment(), FoodClickListener {
-lateinit var foodViewModel: FoodViewModel
+private val foodViewModel: FoodViewModel by viewModel<FoodViewModel>()
+
     var binding: FragmentFoodListBinding? = null
 
     val adapterTextInput = FoodTextInputEditTextAdapter(this)
@@ -53,40 +54,35 @@ lateinit var foodViewModel: FoodViewModel
 
         binding.tvFood.addTextChangedListener(SimpleTextWatcher)
 
-        //ViewModel
-        foodViewModel = ViewModelProvider(this).get(FoodViewModel::class.java)
 
 binding.textInputLayout.setEndIconOnClickListener {
-    lifecycleScope.launch {
-
         binding.progressBar.visibility = View.VISIBLE
         var tvfoodedittext = binding.tvFood.text.toString()
         if (inputChek(tvfoodedittext)) {
-            var food = foodViewModel.getFoodReciep("$tvfoodedittext")
-            Log.d("FOOD", "$food")
-            adapter.setData(food)
-            binding.recyclerFood.visibility = View.VISIBLE
-            binding.progressBar.visibility = View.GONE
+            foodViewModel.getFoodReciep("$tvfoodedittext")
 
-            if (food.size > 0) {
+            foodViewModel.foodList.observe(viewLifecycleOwner){
+                food->
+                Log.d("FOOD", "$food")
+                adapter.setData(food)
                 binding.recyclerFood.visibility = View.VISIBLE
-                binding.listsearch.visibility = View.GONE
-                binding.errorlist.visibility = View.GONE
                 binding.progressBar.visibility = View.GONE
-            }else
-                binding.errorlist.visibility = View.VISIBLE
-            Log.d("FOOD","$food")
-            adapter.setData(food)
+                if (food.size > 0) {
+                    binding.recyclerFood.visibility = View.VISIBLE
+                    binding.listsearch.visibility = View.GONE
+                    binding.errorlist.visibility = View.GONE
+                    binding.progressBar.visibility = View.GONE
+                }else
+                    binding.errorlist.visibility = View.VISIBLE
+                Log.d("FOOD","$food")
+                adapter.setData(food)
+            }
         }else{
             binding.errorlist.visibility = View.VISIBLE
             binding.progressBar.visibility = View.GONE
             binding.recyclerFood.visibility = View.GONE
 
         }
-
-
-    }
-
         }
 
         return binding.root
@@ -110,18 +106,23 @@ binding.textInputLayout.setEndIconOnClickListener {
 
         override fun afterTextChanged(s: Editable?) {
             lifecycleScope.launch {
+                var foods:List<Hint> = emptyList()
               flow {
                 try {
                     var text = s.toString()
                     delay(100)
-                    if(adapterTextInput.foodList.size<1)
+                    if(adapterTextInput.foodList.size<2)
                         delay(300)
                         binding!!.progressBar.visibility = View.VISIBLE
-                    var food = foodViewModel.getFoodReciep("$text")
-                    emit(adapterTextInput.setData(food.takeLast(food.size - 1)))
+                    foodViewModel.getFoodReciep("$text")
+                    foodViewModel.foodList.observe(viewLifecycleOwner){
+                        food->
+                        foods = food
+                    }
+                    emit(adapterTextInput.setData(foods.takeLast(foods.size - 1)))
                     binding!!.progressBar.visibility = View.GONE
                     Log.d("textwatcher", "$text")
-                    if(s!!.length < 1)
+                    if(s!!.length < 2)
                         binding!!.listsearch.visibility = View.GONE
 
 
@@ -135,9 +136,6 @@ binding.textInputLayout.setEndIconOnClickListener {
 
         }.collect()
             }
-
-
-
     }
     }
 
@@ -147,21 +145,24 @@ binding.textInputLayout.setEndIconOnClickListener {
             val tvfoodedittext = binding!!.tvFood.text.toString()
             if (inputChek(tvfoodedittext)) {
                 binding!!.tvFood.setText(food)
-                var food = foodViewModel.getFoodReciep("$food")
-                adapter.setData(food.take(1))
-                binding!!.recyclerFood.visibility = View.VISIBLE
-                binding!!.progressBar.visibility = View.GONE
-                binding!!.listsearch.visibility = View.GONE
+                foodViewModel.getFoodReciep("$food")
+                foodViewModel.foodList.observe(viewLifecycleOwner){
+                    food->
+                    adapter.setData(food.take(1))
+                    if (food.size > 0) {
+                        binding!!.recyclerFood.visibility = View.VISIBLE
+                        binding!!.progressBar.visibility = View.GONE
 
-                if (food.size > 0) {
+
+                    }else
+                        binding!!.errorlist.visibility = View.VISIBLE
+                    Log.d("FOOD","$food")
+                    adapter.setData(food.take(1))
                     binding!!.recyclerFood.visibility = View.VISIBLE
                     binding!!.progressBar.visibility = View.GONE
+                    binding!!.listsearch.visibility = View.GONE
+                }
 
-
-                }else
-                    binding!!.errorlist.visibility = View.VISIBLE
-                Log.d("FOOD","$food")
-                adapter.setData(food.take(1))
             }else{
                 binding!!.errorlist.visibility = View.VISIBLE
                 binding!!.progressBar.visibility = View.GONE
