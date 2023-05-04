@@ -7,6 +7,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.retrofittraining.data.Hint
 import com.example.retrofittraining.domain.GetFoodUseCase
 import kotlinx.coroutines.launch
+import java.util.concurrent.Flow
 
 
 class FoodViewModel(
@@ -25,6 +26,7 @@ class FoodViewModel(
  }
 
 
-    
+
+
 
 }

@@ -1,4 +1,4 @@
-package com.example.retrofittraining.presentation.view.Adapter
+package com.example.retrofittraining.presentation.view.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.retrofittraining.R
-import com.example.retrofittraining.Utils.DoubleRoudTo
+import com.example.retrofittraining.utils.DoubleRoudTo
 import com.example.retrofittraining.data.Hint
 import com.example.retrofittraining.databinding.FoodsListBinding
 import com.squareup.picasso.Picasso

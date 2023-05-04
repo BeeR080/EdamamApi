@@ -8,7 +8,7 @@
 
     <fragment
         android:id="@+id/listFragment"
-        android:name="com.example.retrofittraining.presentation.view.Fragments.FoodListFragment"
+        android:name="com.example.retrofittraining.presentation.view.fragments.FoodListFragment"
         android:label="EDAMAM"
         tools:layout="@layout/fragment_food_list" />
 
