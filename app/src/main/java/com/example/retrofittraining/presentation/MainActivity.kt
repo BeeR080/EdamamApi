@@ -22,7 +22,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        setupActionBarWithNavController(findNavController(R.id.fragment))
+        findNavController(R.id.fragment)
+
+
 
     }
 

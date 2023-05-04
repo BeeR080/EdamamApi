@@ -9,6 +9,13 @@
 
 
 
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/foodlist_recyclerFood"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+
+
     <fragment
         android:id="@+id/fragment"
         android:name="androidx.navigation.fragment.NavHostFragment"

@@ -1,5 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Theme.RetrofitTraining" parent="Theme.MaterialComponents.Light">
         <!-- Primary brand color. -->
         <item name="colorPrimary">@color/green</item>
@@ -12,21 +13,7 @@
         <item name="android:actionMenuTextColor">@color/white</item>
         <item name="color">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/green</item>
-
-        <!-- Customize your theme here. -->
-    </style>
-
-    <style name="Theme.RetrofitTrainingNoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
-        <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/green</item>
-        <item name="colorPrimaryVariant">@color/dark_green</item>
-        <item name="colorOnPrimary">@color/white</item>
-        <!-- Secondary brand color. -->
-        <item name="colorSecondary">@color/green</item>
-        <item name="colorSecondaryVariant">@color/dark_green</item>
-        <item name="colorOnSecondary">@color/black</item>
-        <!-- Status bar color. -->
+        <item name="android:iconTint">@color/green</item>
         <item name="android:statusBarColor" tools:targetApi="l">@color/green</item>
         <!-- Customize your theme here. -->
     </style>

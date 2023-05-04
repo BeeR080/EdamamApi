@@ -45,7 +45,7 @@ class FoodAdapter:RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
     override fun onBindViewHolder(holder: FoodViewHolder, position: Int) {
         val currentitem = foodList[position]
 
-        var getimage =  Picasso.get()
+       Picasso.get()
             .load(currentitem.food.image?.toUri())
             .placeholder(R.mipmap.ic_edamam)
             .into(holder.foodImage)
@@ -54,7 +54,7 @@ class FoodAdapter:RecyclerView.Adapter<FoodAdapter.FoodViewHolder>() {
         holder.foodEnerckcal.text = DoubleRoudTo(currentitem.food.nutrients.ENERC_KCAL)+"kcal"
         holder.foodFat.text = (DoubleRoudTo(currentitem.food.nutrients.FAT)+"g")
         holder.foodProcnt.text = DoubleRoudTo(currentitem.food.nutrients.PROCNT)+"g"
-        if(currentitem.food.foodContentsLabel!=null) {
+        if(currentitem.food.foodContentsLabel !=null) {
             holder.foodRecipe.text = "Recipe: " + currentitem.food.foodContentsLabel
 
         }else{
