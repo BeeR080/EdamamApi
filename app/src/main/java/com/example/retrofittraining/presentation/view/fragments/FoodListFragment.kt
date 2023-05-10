@@ -6,6 +6,7 @@ import android.database.Cursor
 import android.database.MatrixCursor
 import android.os.Bundle
 import android.provider.BaseColumns
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -20,12 +21,9 @@ import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofittraining.R
-import com.example.retrofittraining.data.Hint
 import com.example.retrofittraining.databinding.FragmentFoodListBinding
 import com.example.retrofittraining.viewmodel.FoodViewModel
 import com.example.retrofittraining.presentation.view.adapter.FoodAdapter
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -81,7 +79,7 @@ class FoodListFragment : Fragment(){
 
     private fun setupMenu() {
 
-        val sugList = listOf("Pizza","Boloshopi","Chelozza")
+
 
         //add suggestions list dropdown
         val from = arrayOf(SearchManager.SUGGEST_COLUMN_TEXT_1)
@@ -111,13 +109,22 @@ class FoodListFragment : Fragment(){
                         return true
                     }
 
-                    override fun onQueryTextChange(foodName: String?): Boolean {
+                    override fun onQueryTextChange(foodName: String): Boolean {
+                        val sugList = mutableListOf<String>()
+                        foodViewModel.getSuggetList(foodName)
+
+                        foodViewModel.suggestList.observe(viewLifecycleOwner){
+                            sugList.addAll(it)
+                            Log.d("MyLog","$it")
+                        }
+
+
                         val cursor = MatrixCursor(arrayOf(
                             BaseColumns._ID,
                             SearchManager.SUGGEST_COLUMN_TEXT_1
                         ))
-                        getFoodReciepe(foodName)
-                        foodName?.let {
+
+                        foodName.let {
 
                             sugList.forEachIndexed { index, suggestion ->
 
