@@ -6,8 +6,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.retrofittraining.data.Hint
 import com.example.retrofittraining.domain.GetFoodUseCase
+import com.example.retrofittraining.domain.GetSuggestFoodUseCase
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.flowOn
@@ -17,6 +17,7 @@ import kotlinx.coroutines.launch
 
 class FoodViewModel(
     private val getFoodUseCase: GetFoodUseCase,
+    private val getSuggestFoodUseCase: GetSuggestFoodUseCase,
 ) : ViewModel() {
 
     private val _foodList = MutableLiveData<List<Hint>>()
@@ -35,7 +36,7 @@ class FoodViewModel(
 
     fun getSuggetList(foodName: String) {
         viewModelScope.launch {
-           getFoodUseCase.getSuggestFood(foodName)
+            getSuggestFoodUseCase.getSuggestFood(foodName)
                 .flowOn(Dispatchers.IO)
                 .collect{dataSuggestFood->
                     _suggestList.value = dataSuggestFood.map {

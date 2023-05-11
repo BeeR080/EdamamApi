@@ -5,6 +5,7 @@ import com.example.retrofittraining.presentation.APP_ID
 import com.example.retrofittraining.presentation.APP_KEY
 import com.example.retrofittraining.presentation.BASE_URI
 import okhttp3.OkHttpClient
+import retrofit2.HttpException
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -16,18 +17,21 @@ interface FoodApiService {
         @GET("api/food-database/v2/parser?")
        suspend fun getFoodRecipe(
             @Query("ingr") ingr: String,
-            @Query("app_id") app_id: String = APP_ID,
-            @Query("app_key") app_key: String = APP_KEY
-
+            @Query("app_id") app_id: String =APP_ID,
+            @Query("app_key") app_key: String =APP_KEY,
             ): Response <FoodList>
 
     }
-    var okHttpClient = OkHttpClient.Builder().build()
 
-    var retrofit: Retrofit = Retrofit.Builder()
-        .baseUrl(BASE_URI)
-        .addConverterFactory(GsonConverterFactory.create())
-        .client(okHttpClient)
-        .build()
 
-    var restFoodApi: FoodApiService = retrofit.create(FoodApiService::class.java)
+//var restFoodApi: FoodApiService = retrofit.create(FoodApiService::class.java)
+
+
+/*class FoodRemoteData(private val foodApiService: FoodApiService) {
+
+   suspend fun invoke(): Response<FoodList> =try {
+       foodApiService.getFoodRecipe("", APP_ID, APP_KEY)
+   }catch (e:HttpException){
+
+   }
+}*/

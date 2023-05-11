@@ -6,7 +6,6 @@ import android.database.Cursor
 import android.database.MatrixCursor
 import android.os.Bundle
 import android.provider.BaseColumns
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.Menu
@@ -19,7 +18,9 @@ import android.widget.SearchView
 import android.widget.SimpleCursorAdapter
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofittraining.R
 import com.example.retrofittraining.databinding.FragmentFoodListBinding
@@ -112,30 +113,30 @@ class FoodListFragment : Fragment(){
                     }
 
                     override fun onQueryTextChange(foodName: String): Boolean {
-                        val sugList = mutableListOf<String>()
                        foodViewModel.getSuggetList(foodName)
 
                         viewLifecycleOwner.lifecycleScope.launch{
-                            foodViewModel.suggestList.collect{
-                                sugList.addAll(it)
-                                Log.d("MyLog","$it")
+
+                            repeatOnLifecycle(Lifecycle.State.STARTED){
+
+                            foodViewModel.suggestList.collect{suggestList->
+
+                                val cursor = MatrixCursor(arrayOf(
+                                    BaseColumns._ID,
+                                    SearchManager.SUGGEST_COLUMN_TEXT_1
+                                ))
+                                foodName.let {
+
+                                    suggestList.forEachIndexed { index, suggestion ->
+
+                                        if(suggestion.contains(foodName,true))
+                                            cursor.addRow(arrayOf(index,suggestion))
+                                    }
+                                }
+                                suggestAdapter.changeCursor(cursor)
                             }
                         }
-
-                        val cursor = MatrixCursor(arrayOf(
-                            BaseColumns._ID,
-                            SearchManager.SUGGEST_COLUMN_TEXT_1
-                        ))
-
-                        foodName.let {
-
-                            sugList.forEachIndexed { index, suggestion ->
-
-                                if(suggestion.contains(foodName,true))
-                                    cursor.addRow(arrayOf(index,suggestion))
-                            }
                         }
-                        suggestAdapter.changeCursor(cursor)
 
                         return true
                     }
