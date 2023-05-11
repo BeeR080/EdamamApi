@@ -19,11 +19,13 @@ import android.widget.SearchView
 import android.widget.SimpleCursorAdapter
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
+import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofittraining.R
 import com.example.retrofittraining.databinding.FragmentFoodListBinding
 import com.example.retrofittraining.viewmodel.FoodViewModel
 import com.example.retrofittraining.presentation.view.adapter.FoodAdapter
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
@@ -111,13 +113,14 @@ class FoodListFragment : Fragment(){
 
                     override fun onQueryTextChange(foodName: String): Boolean {
                         val sugList = mutableListOf<String>()
-                        foodViewModel.getSuggetList(foodName)
+                       foodViewModel.getSuggetList(foodName)
 
-                        foodViewModel.suggestList.observe(viewLifecycleOwner){
-                            sugList.addAll(it)
-                            Log.d("MyLog","$it")
+                        viewLifecycleOwner.lifecycleScope.launch{
+                            foodViewModel.suggestList.collect{
+                                sugList.addAll(it)
+                                Log.d("MyLog","$it")
+                            }
                         }
-
 
                         val cursor = MatrixCursor(arrayOf(
                             BaseColumns._ID,
