@@ -2,6 +2,7 @@ package com.example.retrofittraining.di
 
 import com.example.retrofittraining.domain.GetFoodUseCase
 import com.example.retrofittraining.domain.GetSuggestFoodUseCase
+import com.example.retrofittraining.domain.model.FoodRemoteData
 import com.example.retrofittraining.viewmodel.FoodViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -15,6 +16,9 @@ import org.koin.dsl.module
         factory <GetSuggestFoodUseCase>{
             GetSuggestFoodUseCase(repository = get())
         }
+
+        single <FoodRemoteData>{
+            FoodRemoteData(foodApiService = get()) }
     }
 
 
