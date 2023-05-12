@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 val dataModule = module {
     single<FoodRepository>{
-        FoodRepositoryImpl()
+        FoodRepositoryImpl(restFoodApiService = get())
     }
 }

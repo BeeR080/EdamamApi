@@ -1,7 +1,5 @@
 package com.example.retrofittraining.domain
 
-
-import com.example.retrofittraining.data.Food
 import com.example.retrofittraining.data.Hint
 import kotlinx.coroutines.flow.Flow
 

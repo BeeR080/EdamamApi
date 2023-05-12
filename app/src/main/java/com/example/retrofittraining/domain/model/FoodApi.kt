@@ -1,5 +1,6 @@
 package com.example.retrofittraining.domain.model
 
+import com.example.retrofittraining.NetworkResult
 import com.example.retrofittraining.data.FoodList
 import com.example.retrofittraining.presentation.APP_ID
 import com.example.retrofittraining.presentation.APP_KEY
@@ -24,14 +25,13 @@ interface FoodApiService {
     }
 
 
-//var restFoodApi: FoodApiService = retrofit.create(FoodApiService::class.java)
 
 
-/*class FoodRemoteData(private val foodApiService: FoodApiService) {
 
-   suspend fun invoke(): Response<FoodList> =try {
-       foodApiService.getFoodRecipe("", APP_ID, APP_KEY)
-   }catch (e:HttpException){
+class FoodRemoteData(
+    private val foodApiService: FoodApiService
+    ) {
+   suspend fun invoke(): Response<FoodList> = foodApiService.getFoodRecipe("", APP_ID, APP_KEY)
 
-   }
-}*/
+}
+
