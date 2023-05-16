@@ -16,7 +16,7 @@ interface FoodApiService {
             @Query("ingr") ingr: String,
             @Query("app_id") app_id: String =APP_ID,
             @Query("app_key") app_key: String =APP_KEY,
-            ): Response <FoodList>
+            ): FoodList
 
     }
 

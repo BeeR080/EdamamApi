@@ -11,15 +11,16 @@ import retrofit2.Response
 class FoodRemoteData(
     private val foodApiService: FoodApiService
 ) {
-    suspend fun getReciepe(foodName:String): Response<FoodList> =
+    suspend fun getReciepe(foodName: String): FoodList =
         foodApiService.getFoodRecipe(
             foodName,
             APP_ID,
             APP_KEY
         )
-
-
 }
+
+
+
 
 
 

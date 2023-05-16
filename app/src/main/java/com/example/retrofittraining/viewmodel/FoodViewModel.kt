@@ -30,7 +30,7 @@ class FoodViewModel(
 
    fun getFoodReciep(foodName: String) {
       viewModelScope.launch {
-         _foodList.value =  getFoodUseCase.getFoodReciep(foodName)
+         _foodList.value =  getFoodUseCase.getFoodReciep(foodName).hints
       }
  }
 
@@ -39,7 +39,7 @@ class FoodViewModel(
             getSuggestFoodUseCase.getSuggestFood(foodName)
                 .flowOn(Dispatchers.IO)
                 .collect{dataSuggestFood->
-                    _suggestList.value = dataSuggestFood.map {
+                    _suggestList.value = dataSuggestFood.hints.map {
                         it.food.label
                     }
                 }
