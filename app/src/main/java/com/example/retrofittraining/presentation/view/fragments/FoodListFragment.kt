@@ -31,7 +31,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class FoodListFragment : Fragment(){
-    private val foodViewModel: FoodViewModel by viewModel<FoodViewModel>()
+    private val foodViewModel: FoodViewModel by viewModel()
 
     var binding: FragmentFoodListBinding? = null
 
@@ -63,8 +63,16 @@ class FoodListFragment : Fragment(){
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
-    private fun getFoodReciepe(foodName:String?) {
+    private fun getFoodReciepe(foodName:String?) = with(binding!!) {
 
+        foodViewModel.isLoading.observe(viewLifecycleOwner){isLoading->
+        when(isLoading){
+
+            true->this.progressBar.visibility = View.VISIBLE
+            false->this.progressBar.visibility = View.GONE
+    }
+
+}
         foodViewModel.getFoodReciep(foodName!!)
 
         foodViewModel.foodList.observe(viewLifecycleOwner){foodReciepes->
