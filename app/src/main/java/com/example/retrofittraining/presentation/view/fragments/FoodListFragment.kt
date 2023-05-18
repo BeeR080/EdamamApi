@@ -16,6 +16,7 @@ import android.view.ViewGroup
 import android.widget.CursorAdapter
 import android.widget.SearchView
 import android.widget.SimpleCursorAdapter
+import android.widget.Toast
 import androidx.core.view.MenuHost
 import androidx.core.view.MenuProvider
 import androidx.lifecycle.Lifecycle
@@ -31,10 +32,9 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 
 class FoodListFragment : Fragment(){
+
     private val foodViewModel: FoodViewModel by viewModel()
-
     var binding: FragmentFoodListBinding? = null
-
     private val adapter = FoodAdapter()
 
 
@@ -64,20 +64,35 @@ class FoodListFragment : Fragment(){
     }
 
     private fun getFoodReciepe(foodName:String?) = with(binding!!) {
+        foodViewModel.getFoodReciep(foodName!!)
 
         foodViewModel.isLoading.observe(viewLifecycleOwner){isLoading->
         when(isLoading){
-
             true->this.progressBar.visibility = View.VISIBLE
             false->this.progressBar.visibility = View.GONE
     }
 
 }
-        foodViewModel.getFoodReciep(foodName!!)
+
+        foodViewModel.errorMsg.observe(viewLifecycleOwner){errorMsg->
+            if(!errorMsg.isNullOrEmpty()){
+                Toast.makeText(requireContext(), errorMsg,Toast.LENGTH_SHORT).show()
+            }
+
+        }
+
+
+
 
         foodViewModel.foodList.observe(viewLifecycleOwner){foodReciepes->
-
+        if(!foodReciepes.isNullOrEmpty()){
+            this.foodlistErrorlist.visibility = View.GONE
             adapter.setData(foodReciepes)
+
+        }else{
+            this.foodlistErrorlist.visibility = View.VISIBLE
+            adapter.setData(foodReciepes)
+        }
         }
 
 

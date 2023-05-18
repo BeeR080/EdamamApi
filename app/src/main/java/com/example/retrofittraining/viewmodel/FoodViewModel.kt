@@ -3,6 +3,8 @@ package com.example.retrofittraining.viewmodel
 
 
 
+import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -32,26 +34,46 @@ class FoodViewModel(
     private var _isLoading = MutableLiveData(false)
      var isLoading = _isLoading
 
+     private var _errorMsg = MutableLiveData("")
+    var errorMsg = _errorMsg
+
+
+
+
 
 
    fun getFoodReciep(foodName: String) {
        viewModelScope.launch {
            try {
                _isLoading.value = true
+               _errorMsg.value =""
+
                when (val response = getFoodUseCase.getFoodReciep(foodName)) {
                    is APIResponse.Success -> {
-                       _foodList.value = response.data?.hints!!
-                       _isLoading.value = false
+
+                       if(response.data?.hints!!.isNotEmpty()) {
+                           _foodList.value = response.data.hints
+
+                       }else{
+                           _foodList.value = emptyList()
+                       }
+                           _isLoading.value = false
 
                    }
 
                    is APIResponse.Error -> {
+                       _errorMsg.value = response.message
+                       _foodList.value = emptyList()
                        _isLoading.value = false
+
+
                    }
                }
 
            } catch (exception: Exception) {
                _isLoading.value = false
+
+
            }
 
        }
@@ -63,7 +85,7 @@ class FoodViewModel(
                 when(val response = getSuggestFoodUseCase.getSuggestFood(foodName)){
 
                     is APIResponse.Success-> {
-                      flow<FoodList>{
+                      flow{
                                 emit(response.data!!)
                                 }
                             .collect{ data ->
@@ -79,11 +101,11 @@ class FoodViewModel(
                         _suggestList.value = emptyList()
                     }
 
-
                 }
 
             }catch (exception:Exception){
-                APIResponse.Error(null,message = "Error in VM ${exception.message}")
+                _suggestList.value = emptyList()
+
             }
         }
 
