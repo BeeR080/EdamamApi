@@ -2,7 +2,7 @@ package com.example.retrofittraining.viewmodel
 
 
 
-import android.util.Log
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -11,11 +11,9 @@ import com.example.retrofittraining.data.Hint
 import com.example.retrofittraining.domain.GetFoodUseCase
 import com.example.retrofittraining.domain.GetSuggestFoodUseCase
 import com.example.retrofittraining.domain.model.APIResponse
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.launch
 
 
@@ -63,16 +61,24 @@ class FoodViewModel(
         viewModelScope.launch {
             try{
                 when(val response = getSuggestFoodUseCase.getSuggestFood(foodName)){
-                    is APIResponse.Success<*> -> {
-                        response
-                            .flowOn(Dispatchers.IO)
-                            .collect { dataSuggestFood ->
-                                _suggestList.value = dataSuggestFood.data?.hints!!.map {
-                                    it.food.label
 
+                    is APIResponse.Success-> {
+                      flow<FoodList>{
+                                emit(response.data!!)
                                 }
+                            .collect{ data ->
+                            _suggestList.value = data.hints.map {
+                                it.food.label
+
                             }
+                        }
+
                     }
+
+                    is APIResponse.Error->{
+                        _suggestList.value = emptyList()
+                    }
+
 
                 }
 
@@ -80,6 +86,7 @@ class FoodViewModel(
                 APIResponse.Error(null,message = "Error in VM ${exception.message}")
             }
         }
+
     }
 
 

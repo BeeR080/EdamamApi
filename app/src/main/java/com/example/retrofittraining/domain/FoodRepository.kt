@@ -9,7 +9,7 @@ import kotlinx.coroutines.flow.Flow
 interface FoodRepository {
 
      suspend fun getFoodReciep(foodName: String): APIResponse<FoodList>
-     suspend fun getSuggestFood(foodName: String): Flow<APIResponse<FoodList>>
+     suspend fun getSuggestFood(foodName: String): APIResponse<FoodList>
 
 
 

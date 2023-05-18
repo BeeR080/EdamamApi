@@ -6,7 +6,7 @@ import com.example.retrofittraining.domain.model.APIResponse
 import kotlinx.coroutines.flow.Flow
 
 class GetSuggestFoodUseCase(private val repository: FoodRepository) {
-    suspend fun getSuggestFood(foodName: String): Flow<APIResponse<FoodList>> {
+    suspend fun getSuggestFood(foodName: String): APIResponse<FoodList> {
         return repository.getSuggestFood(foodName)
     }
 }

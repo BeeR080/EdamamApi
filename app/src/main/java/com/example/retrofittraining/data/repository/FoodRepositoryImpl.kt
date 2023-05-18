@@ -26,21 +26,18 @@ class FoodRepositoryImpl(private val remoteData: FoodRemoteData):FoodRepository 
 
     }
 
-    override suspend fun getSuggestFood(foodName: String): Flow<APIResponse<FoodList>> {
+    override suspend fun getSuggestFood(foodName: String): APIResponse<FoodList> {
 
         return try {
-            flow{
-                val getFood = remoteData.getReciepe(foodName)
-                Log.d("Mylog","$getFood")
-                emit(APIResponse.Success(data = getFood))
-                delay(300)
+          APIResponse.Success(remoteData.getReciepe(foodName))
 
-            }
+
+
         }catch (exception:Exception){
-            flow{
-              emit(APIResponse.Error(null,message = "Error ${exception.message}"))
 
-            }
+              APIResponse.Error(null,message = "Error ${exception.message}")
+
+
         }
     }
 
