@@ -1,4 +1,4 @@
-package com.example.retrofittraining.viewmodel
+package com.example.retrofittraining.presentation.viewmodel
 
 
 import androidx.lifecycle.MutableLiveData

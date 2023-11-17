@@ -1,4 +1,4 @@
-package com.example.retrofittraining.app
+package com.example.retrofittraining.presentation.app
 
 import android.app.Application
 import com.example.retrofittraining.di.dataModule

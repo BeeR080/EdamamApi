@@ -1,6 +1,6 @@
 package com.example.retrofittraining.di
 
-import com.example.retrofittraining.viewmodel.FoodViewModel
+import com.example.retrofittraining.presentation.viewmodel.FoodViewModel
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 

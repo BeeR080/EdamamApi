@@ -24,7 +24,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.retrofittraining.R
 import com.example.retrofittraining.databinding.FragmentFoodListBinding
-import com.example.retrofittraining.viewmodel.FoodViewModel
+import com.example.retrofittraining.presentation.viewmodel.FoodViewModel
 import com.example.retrofittraining.presentation.view.adapter.FoodAdapter
 import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
